@@ -45,7 +45,7 @@ $checks -split ',' | foreach {
 	Start-Process $bin $param1c_check -Wait
 	Start-Sleep -s 5
 
-	$error_code = Get-Content $error_file;
+	$error_code = Get-Content $error_file | Select-Object -First 1;
 	Write-Debug "Error code: $error_code"
 	if ($error_code -ne "0") {
 		Write-Host "Error $error_code"

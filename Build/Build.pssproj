@@ -29,6 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Build.ps1" />
+    <Compile Include="Check.ps1" />
     <Compile Include="Create.ps1" />
     <Compile Include="Update.ps1" />
   </ItemGroup>
