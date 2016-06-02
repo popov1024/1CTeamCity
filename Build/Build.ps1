@@ -31,16 +31,15 @@ $wd = $pwd
 $param1c_general = " DESIGNER /F " + [String]$wd + " /ConfigurationRepositoryF" + $rep + " /ConfigurationRepositoryN" + $repu + " /ConfigurationRepositoryP" + $repp + " "
 Write-Debug "General params: $param1c_general"
 
-#Get version
+# Get version
 
-##Dump configuration
+## Dump configuration
 Write-Host "##teamcity[progressStart 'Getting version']"
 $param1c_dump = $param1c_general + " /DumpConfigToFiles .\dump1c"
-Write-Debug "General params: $param1c_dump"
+Write-Debug "Dump params: $param1c_dump"
 
 Start-Process $bin $param1c_dump -Wait
 Start-Sleep -s 1
-
 
 ## Read configuration
 $configfile = [String]$wd + "\dump1c\Configuration.xml"
@@ -49,7 +48,7 @@ Write-Debug "Congiguration file: $configfile"
 if (-not (Test-Path $configfile)) {
 	Write-Host "##teamcity[message text='The configuration dump has not been created. The configuration dose not exist' errorDetails='May be the information base was locked' status='FAILURE']"
 	Write-Host "##teamcity[progressFinish 'Getting version']"
-    exit(1)
+	exit(1)
 }
 
 [xml]$config = Get-Content $configfile
@@ -83,7 +82,7 @@ Write-Debug "Build path version: $build_path_version"
 if (Test-Path $build_path_version) {
 	Write-Host "##teamcity[message text='The build with this version has existed' errorDetails='Perhaps need to change version of configuration' status='FAILURE']"
 	Write-Host "##teamcity[progressFinish 'Building']"
-    exit(1)
+	exit(1)
 }
 
 ## Get pervision versions
