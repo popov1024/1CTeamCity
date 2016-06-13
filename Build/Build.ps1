@@ -61,7 +61,7 @@ try {
 } catch{}
 
 ## Version
-$match = [regex]::Match($version, '(\d+\.\d+\.\d+)\.(\d+)')
+$match = [regex]::Match($version, '(\d*\.?\d*\.?\d+)\.(\d+)')
 $version_major = $match.Groups[1].Value
 $version_minor = $match.Groups[2].Value
 

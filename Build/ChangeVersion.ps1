@@ -82,7 +82,7 @@ Write-Debug "Version: $version"
 
 
 ## Version
-$match = [regex]::Match($version, '(\d+\.\d+\.\d+)\.(\d+)')
+$match = [regex]::Match($version, '(\d*\.?\d*\.?\d+)\.(\d+)')
 $version_major = $match.Groups[1].Value
 $version_minor = $match.Groups[2].Value
 $version_next = "$version_major." + ([int]$version_minor + 1)
@@ -90,6 +90,7 @@ $version_next = "$version_major." + ([int]$version_minor + 1)
 Write-Debug "Major: $version_major"
 Write-Debug "Minor: $version_minor"
 Write-Debug "Next: $version_next"
+Write-Host "$version -> $version_next"
 Write-Host "##teamcity[progressFinish 'Getting version']"
 
 ## Set version
